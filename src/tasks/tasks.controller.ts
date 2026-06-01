@@ -6,6 +6,7 @@ import {
   Delete,
   Body,
   Param,
+  NotFoundException
 } from '@nestjs/common';
 
 import { CreateTaskDto } from './dtos/create-tasks.dto';
@@ -17,33 +18,27 @@ interface Task {
 
 @Controller('tasks')
 export class TasksController {
-  taksService: TasksService;
-  constructor() {
-    this.taksService = new TasksService();
+  constructor(public tasksService: TasksService) {
   }
 
   @Get()
   listTasks() {
-    return this.taksService.findAll();
+    return this.tasksService.findAll();
   }
 
   @Post()
   createTask(@Body() body: CreateTaskDto) {
-    return body;
+    return this.tasksService.create(body.content);
   }
 
-  @Get(':id')
-  getTask(@Param('id') id: string) {
-    return `Task found with ID: ${id}`;
+  @Get('/:id')
+  async getTask(@Param('id') id: string) {
+    const task = await this.tasksService.findOne(parseInt(id));
+      
+    if (!task) {
+      throw new NotFoundException(`Task with id ${id} not found`);
+    }
+    return task;
   }
 
-  @Patch(':id')
-  updateTask(@Param('id') id: string, @Body() body: Task) {
-    return `Task updated with ID: ${id}`;
-  }
-
-  @Delete(':id')
-  deleteTask(@Param('id') id: string) {
-    return `Task deleted with ID: ${id}`;
-  }
 }

@@ -1,12 +1,54 @@
 [
-    {"id": "1", "content": "Membuat Bisnis Plan untuk Startup"},
-    {"id": "2", "content": "Membuat Landing Page untuk Produk Baru"},
-    {"id": "3", "content": "Membuat Rencana Pemasaran untuk Kuartal Berikutnya"},
-    {"id": "4", "content": "Membuat Proposal untuk Investor"},
-    {"id": "5", "content": "Membuat Rencana Pengembangan Produk"},
-    {"id": "6", "content": "Membuat Rencana Keuangan untuk Tahun Depan"},
-    {"id": "7", "content": "Membuat Rencana Operasional untuk Proyek Baru"},
-    {"id": "8", "content": "Membuat Rencana Sumber Daya Manusia untuk Tahun Depan"},
-    {"id": "9", "content": "Membuat Rencana Penjualan untuk Kuartal Berikutnya"},
-    {"id": "10", "content": "Membuat Rencana Pengembangan Bisnis untuk Tahun Depan"}
+  {
+    "id": "1",
+    "content": "Membuat Bisnis Plan untuk Startup"
+  },
+  {
+    "id": "2",
+    "content": "Membuat Landing Page untuk Produk Baru"
+  },
+  {
+    "id": "3",
+    "content": "Membuat Rencana Pemasaran untuk Kuartal Berikutnya"
+  },
+  {
+    "id": "4",
+    "content": "Membuat Proposal untuk Investor"
+  },
+  {
+    "id": "5",
+    "content": "Membuat Rencana Pengembangan Produk"
+  },
+  {
+    "id": "6",
+    "content": "Membuat Rencana Keuangan untuk Tahun Depan"
+  },
+  {
+    "id": "7",
+    "content": "Membuat Rencana Operasional untuk Proyek Baru"
+  },
+  {
+    "id": "8",
+    "content": "Membuat Rencana Sumber Daya Manusia untuk Tahun Depan"
+  },
+  {
+    "id": "9",
+    "content": "Membuat Rencana Penjualan untuk Kuartal Berikutnya"
+  },
+  {
+    "id": "10",
+    "content": "Membuat Rencana Pengembangan Bisnis untuk Tahun Depan"
+  },
+  {
+    "id": "101",
+    "content": "231"
+  },
+  {
+    "id": "1011",
+    "content": "belajar nest js"
+  },
+  {
+    "id": "1012",
+    "content": "belajar penerapan IoC di nest js"
+  }
 ]
