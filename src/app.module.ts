@@ -4,6 +4,7 @@ import { ItemsModule } from './items/items.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { Item } from './items/item.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -18,7 +19,8 @@ import { Item } from './items/item.entity';
             database: 'secondhandmarket',
             entities: [User, Item],
             synchronize: true,
-        }), 
+        }),
+        AuthModule, 
     ],
 })
 export class AppModule { }
