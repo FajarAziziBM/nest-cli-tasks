@@ -26,6 +26,9 @@ export class User {
   @Exclude()
   password: string;
 
+  @Column({ default: true })
+  admin: boolean;
+
   // One to Many to Item
   @OneToMany(() => Item, (item) => item.user)
   items: Item[];

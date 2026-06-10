@@ -7,6 +7,9 @@ import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class UsersService {
+    findOneBy(userId: any) {
+        throw new Error("Method not implemented.");
+    }
     constructor(
         @InjectRepository(User)
         private userRepository: Repository<User>,
@@ -20,7 +23,7 @@ export class UsersService {
     find(email: string) {
         return this.userRepository.find({ where: { email } });
     }
-    
+
     // CREATE USER (REGISTER)
     create(name: string, email: string, password: string) {
         const user = this.userRepository.create({ name, email, password });
@@ -28,7 +31,7 @@ export class UsersService {
     }
 
     // FIND ONE USER BY ID
-    async findOne(id: number) { 
+    async findOne(id: number) {
         if (!id) {
             throw new NotFoundException('User not found');
         }
@@ -39,6 +42,10 @@ export class UsersService {
         }
 
         return user;
+    }
+
+    async findOneWithoutException(id: number) {
+        return this.userRepository.findOneBy({ id });
     }
 
     // UPDATE USER

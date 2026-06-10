@@ -22,6 +22,9 @@ export class Item {
     @Column()
     category: string;
 
+    @Column({ default: false })
+    approved: boolean;
+
     // Many to one to User
     @ManyToOne(() => User, (user) => user.items)
     user: User;

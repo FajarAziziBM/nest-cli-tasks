@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +14,8 @@ import { CurrentUser } from '../decorators/current-user.decorator';
 import { User } from '../users/user.entity';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { ItemDto } from './dtos/item.dto';
+import { ApproveItemDto } from './dtos/approve-item.dto';
+import { AdminGuard } from '../guards/admin.guard';
 
 
 @Controller('items')
@@ -27,5 +31,11 @@ export class ItemsController {
     @Body() body: CreateItemDto, @CurrentUser() user: User
   ) {
     return this.itemService.create(body, user);
+  }
+
+  @Patch('/:id')
+  @UseGuards(AdminGuard)
+  approveItem(@Param('id') id: string, @Body() body: ApproveItemDto) {
+    return this.itemService.approveItem(parseInt(id), body.approved);
   }
 }
