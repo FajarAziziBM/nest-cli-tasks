@@ -12,38 +12,54 @@ import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('users')
 @Serialize(UserDto)
-
 export class UsersController {
-    constructor(private userService: UsersService, private authService: AuthService) { }
-   
-    @Get()
-    findAllUsers(@Query('email') email: string) {
-        return this.userService.findAll();
-    }
+  constructor(
+    private userService: UsersService,
+    private authService: AuthService,
+  ) {}
 
-    @Post()
-    createUser(@Body() body: createUserDto) {
-        return this.userService.create(body.name, body.email, body.password);
-    }
+  // GET /users
+  @Get()
+  findAllUsers() {
+    return this.userService.findAll();
+  }
 
-    @Get('/:id')
-    findUser(@Param('id') id: string) {
-        return this.userService.findOne(parseInt(id));
-    }
+  // ✅ REGISTER USER
+  // POST /users
+  @Post()
+  createUser(@Body() body: createUserDto) {
+    return this.userService.create(
+      body.name,
+      body.email,
+      body.password,
+    );
+  }
 
-    @Patch('/:id')
-    updateUser(@Param('id') id: string, @Body() body: updateUserDto) {
-        return this.userService.update(parseInt(id), body);
-    }
+  // GET /users/:id
+  @Get('/:id')
+  findUser(@Param('id') id: string) {
+    return this.userService.findOne(parseInt(id));
+  }
 
-    @Delete(':id')
-    removeUser(@Param('id') id: string) {
-        return this.userService.remove(parseInt(id));
-    }
+  // PATCH /users/:id
+  @Patch('/:id')
+  updateUser(
+    @Param('id') id: string,
+    @Body() body: updateUserDto,
+  ) {
+    return this.userService.update(parseInt(id), body);
+  }
 
-    @Get('/auth/current-user')
-    @UseGuards(AuthGuard)
-    currentUser(@CurrentUser() user: User) {
-        return user;
-    }
+  // DELETE /users/:id
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.userService.remove(parseInt(id));
+  }
+
+  // GET /users/auth/current-user
+  @Get('/auth/current-user')
+  @UseGuards(AuthGuard)
+  currentUser(@CurrentUser() user: User) {
+    return user;
+  }
 }
