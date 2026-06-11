@@ -4,12 +4,34 @@ import { Repository } from 'typeorm';
 import { CreateItemDto } from './dtos/create-item.dto';
 import { Item } from './item.entity';
 import { User } from '../users/user.entity';
+import { QueryItemDto } from './dtos/query-item.dto';
 
 @Injectable()
 export class ItemsService {
     constructor(
         @InjectRepository(Item) private itemRepository: Repository<Item>
     ) { }
+
+    async getAllItems(queryItemDto: QueryItemDto) {
+        const query = await this.itemRepository
+            .createQueryBuilder()
+            .select('*')
+            .where('approved = :approved', { approved: true })
+
+            if(queryItemDto.name){
+                query.andWhere('name LIKE :name', { name: `%${queryItemDto.name}%` })
+            }
+
+            if(queryItemDto.category){
+                query.andWhere('category LIKE :category', { category: `%${queryItemDto.category}%` })
+            }
+            
+            if(queryItemDto.location){
+                query.andWhere('location LIKE :location', { location: `%${queryItemDto.location}%` })
+            }
+        
+            return query.getRawMany();
+    }
 
     create(item: CreateItemDto, user: User) {
         const newItem = this.itemRepository.create(item);
